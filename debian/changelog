@@ -1,0 +1,368 @@
+pyxdg (0.27-2) unstable; urgency=medium
+
+  * Add the missing build dependency on setuptools.
+
+ -- Andrej Shadura <andrewsh@debian.org>  Wed, 13 Jan 2021 12:13:36 +0100
+
+pyxdg (0.27-1) unstable; urgency=medium
+
+  [ Andrej Shadura ]
+  * New upstream release (Closes: #949738, #964609).
+  * Refresh patches and drop a patch applied upstream.
+  * Provide the actual module name.
+  * Add a compatibility layer for the alternative
+    xdg package.
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+
+  [ Håvard Flaget Aasen ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit,
+    Repository, Repository-Browse.
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+ -- Andrej Shadura <andrewsh@debian.org>  Tue, 12 Jan 2021 15:17:29 +0100
+
+pyxdg (0.26-3) unstable; urgency=medium
+
+  * Team upload.
+  * d/tests: remove python2 test support (Closes: #958533, #938305).
+    - d/tests/upstream: Use py3versions -s to support all python3 versions.
+    - d/tests/control: Add python3-all dependency.
+  * d/control: Bump Standards-Version to 4.5.0.
+  * d/gbp.conf: Set debian/master as default branch.
+  * d/salsa-ci.yml: enable salsa-ci.
+
+ -- Emmanuel Arias <eamanu@yaerobi.com>  Thu, 23 Apr 2020 17:30:52 -0400
+
+pyxdg (0.26-2) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Mattia Rizzolo ]
+  * Drop Piotr Lewandowski from uploaders at his request to mia@.
+
+  [ Andrew Starr-Bochicchio ]
+  * Drop Python 2 package (Closes: #938305).
+  * python-desktop-file.patch: Allow test to pass on a
+    system without the python binary in PATH.
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Fri, 27 Mar 2020 10:36:03 -0400
+
+pyxdg (0.26-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Andrew Starr-Bochicchio ]
+  * New upstream release.
+   - Add support for Scale and ScaledDirectories keys (Closes: #877202).
+   - DesktopEntry: New method findTryExec() (Closes: #618514).
+  * Drop patches applied upstream: fix-DesktopEntry-docstring.patch
+    prefer-first-glob-for-finding-mimetype.patch, and
+    fix-insecure-use-of-tmp.patch.
+  * Build using pybuild.
+
+  [ Simon McVittie ]
+  * Drop additional patches applied upstream:
+    d/p/Allow-Scale-in-icon-theme-per-directory-sections.patch,
+    d/p/Allow-ScaledDirectories-key-in-icon-theme-file.patch
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+
+  [ Drew Parsons ]
+  * take test/example from the upstream git repository at
+    https://gitlab.freedesktop.org/xdg/pyxdg.
+    Provide in debian/test-examples.tar.xz. It is not provided in the
+    upstream tarball at https://pypi.org/project/pyxdg/
+  * debian patch test_mime_skip_symlink.patch skips symlink tests
+    (symlinks are not preserved by pybuild)
+  * build with PYBUILD_NAME=xdg not pyxdg (the module name is xdg)
+  * Standards-Version: 4.4.1
+  * debhelper compatibility level 12
+
+ -- Drew Parsons <dparsons@debian.org>  Tue, 03 Dec 2019 12:48:02 +0800
+
+pyxdg (0.25-5) unstable; urgency=medium
+
+  * Team upload
+
+  [ SVN-Git Migration ]
+  * Update Vcs fields for git migration
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/changelog: Remove trailing whitespace
+  * d/control: Remove XS-Testsuite field, not needed anymore
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Remove ancient X-Python3-Version field
+
+  [ Piotr Ożarowski ]
+  * Add dh-python to Build-Depends
+
+  [ Simon McVittie ]
+  * Add patches from upstream to support Scale, ScaledDirectories in
+    icon themes. Thanks to Steve Langasek for forwarding this change
+    from Ubuntu. (Closes: #877202) (LP: #1766793)
+  * Enable autopkgtest-pkg-python tests
+
+  [ Chris Lamb ]
+  * d/tests/control: Remove trailing whitespace
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 17 Feb 2019 11:42:37 +0000
+
+pyxdg (0.25-4) unstable; urgency=high
+
+  * Backport upstream patch that fixes the insecure use
+    of /tmp in xdg.BaseDirectory.get_runtime_dir(strict=False)
+    (Closes: #736247). Fixes CVE-2014-1624.
+  * Bump Standards-Version to 3.9.5, no changes needed.
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Mon, 27 Jan 2014 13:11:18 -0500
+
+pyxdg (0.25-3) unstable; urgency=low
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+  [ Andrew Starr-Bochicchio ]
+  * Upload to unstable.
+
+ -- Andrew Starr-Bochicchio <asb@debian.org>  Sat, 29 Jun 2013 12:27:38 -0400
+
+pyxdg (0.25-2) experimental; urgency=low
+
+  * Team upload.
+
+  [ Thomas Kluyver ]
+  * Don't use nosetests-x.y scripts for tests.
+
+  [ Dmitry Shachnev ]
+  * Unify patches naming (use .patch extension, and dashes in file name).
+  * Merge from Ubuntu:
+    + debian/patches/gettext-support.patch: support Gettext-Domain fields.
+    + debian/patches/prefer-first-glob-for-finding-mimetype.patch:
+      Cherry-pick from upstream to fix test failure with *.png files; when
+      there are multiple globs with the same pattern (as introduced in the
+      latest shared-mime-info update), the last one was preferred. It should
+      have been the first. [Thanks to Thomas Kluyver and Iain Lane]
+  * Refresh debian/patches/set-default-menu.patch.
+  * Bump Standards-Version to 3.9.4, no changes needed.
+  * debian/patches/gettext-support.patch: also disable the test that could
+    fail when gedit is installed.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Fri, 08 Mar 2013 22:44:35 +0400
+
+pyxdg (0.25-1) experimental; urgency=low
+
+  [ Thomas Kluyver ]
+  * New upstream version
+    + Add support for $XDG_RUNTIME_DIR (closes: #656338)
+    + Allow desktop entry files that are not UTF-8 encoded (closes: 693855)
+  * Fix Vcs-Svn entry in debian/control
+
+  [ Josselin Mouette ]
+  * Remove dependency on menu-xdg. It does not make any sense and forces
+    its installation on systems that don’t need it. Closes: #675456.
+
+ -- Thomas Kluyver <thomas@kluyver.me.uk>  Thu, 06 Dec 2012 22:33:23 +0000
+
+pyxdg (0.24-2) experimental; urgency=low
+
+  * debian/tests/upstream: Send nose output to stdout instead of stderr; the
+    latter means a test failure (closes: #694517).
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 27 Nov 2012 06:23:17 +0100
+
+pyxdg (0.24-1) experimental; urgency=low
+
+  * New upstream version
+    + Python 3 support (closes: #591017)
+    + Test suite
+  * Convert packaging to use dh_python2 (closes: #637154)
+
+ -- Thomas Kluyver <thomas@kluyver.me.uk>  Tue, 06 Nov 2012 10:52:16 +0000
+
+pyxdg (0.19-4) unstable; urgency=low
+
+  * Team upload
+  * Set debian-menu.menu as a fallback menu to be parsed when the default
+    (applications.menu) doesn't exist to avoid ParsingErrors (Closes: #654978)
+    + Added menu-xdg as a Depends
+  * Bump standards version to 3.9.3 (no changes needed)
+
+ -- Ryan Kavanagh <rak@debian.org>  Fri, 09 Mar 2012 07:12:58 -0500
+
+pyxdg (0.19-3) unstable; urgency=low
+
+  * Team upload.
+  * Update fix-BaseDirectory-cornercase.patch to handle $XDG_*_DIRS variables
+    (closes: #568757). Thanks to Thibaut Girka for the updated patch.
+  * Bump standards version to 3.9.2 (no changes needed).
+
+ -- Jakub Wilk <jwilk@debian.org>  Sun, 08 May 2011 19:34:06 +0200
+
+pyxdg (0.19-2) unstable; urgency=low
+
+  * Fix case when $XDG_*_HOME is empty (fix-BaseDirectory-cornercase.patch)
+    (closes: #568757). Kudos to Éric Araujo!
+  * Fix xdg.Mime.install_mime_info() exception (fix-583497.patch)
+    (closes: #583497). Thanks Jakub Wilk!
+  * Replace string exceptions in Mime.py (fix-string-exceptions.patch)
+    (closes: #585340). Thanks Sandro Tosi!
+
+ -- Piotr Lewandowski <piotr.lewandowski@gmail.com>  Wed, 23 Jun 2010 16:55:31 +0200
+
+pyxdg (0.19-1) unstable; urgency=low
+
+  * New upstream version:
+    + DesktopEntry: handle unknown extensions (closes: #551297).
+    + DesktopEntry: support Desktop Entry Specification 1.0 (closes: #563660).
+    + IniFile: fix __init__ method (closes: #562951).
+    + Mime: fix get_type_by_data method (closes: #563718).
+  * debian/control:
+    + Update long description (see #563660).
+    + Fix Vcs-{Svn,Browser} fields.
+    + Bump Standards-Version to 3.8.4 (no changes needed).
+  * debian/copyright: s/2009/2010/
+  * debian/patches:
+    + Fix DesktopEntry.py docstring (fix-DesktopEntry-docstring.patch).
+    + Fix URLs in README (fix-README.patch).
+    + Add docstring to IniFile.parse() (add-IniFile-parse-docstring.patch)
+      (closes: #562952).
+
+ -- Piotr Lewandowski <piotr.lewandowski@gmail.com>  Thu, 04 Feb 2010 11:11:13 +0000
+
+pyxdg (0.18-1) unstable; urgency=low
+
+  * debian/control:
+    + New maintainer: Debian Python Modules Team.
+    + Add myself to Uploaders.
+    + Add Vcs-{Svn,Browser} fields.
+  * Acknowledge previous NMUs.
+  * New upstream version (closes: #502233).
+  * Remove debian/patches/* (applied upstream).
+  * Switch to new source format: 3.0 (quilt).
+  * Switch to debhelper (>= 7):
+    + debian/compat: bump to 7.
+    + debian/rules: minimize.
+    + debian/control: minimize Build-Depends.
+    + debian/docs: add AUTHORS, README and TODO.
+    + debian/examples: rename debian/python-xdg.examples.
+  * Remove debian/pycompat.
+
+ -- Piotr Lewandowski <piotr.lewandowski@gmail.com>  Thu, 10 Dec 2009 14:26:22 +0000
+
+pyxdg (0.17-0.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * New upstream version (closes: #508885).
+  * Bump Standards-Version to 3.8.3 (no changes needed).
+  * Add patch fixing README from Jakub Wilk (closes: #535840).
+  * Add patch fixing menu filename handling (closes: #407747).
+  * debian/control:
+    + Remove XB-Python-Version field.
+    + Remove ${shlibs:Depends}.
+    + Add Homepage field (closes: #542474).
+    + s/python/Python/ in description (closes: #542471).
+    + Add new supported specifications in description.
+  * debian/copyright:
+    + Add copyright notice.
+    + Point to LGPL-2.
+  * debian/rules:
+    + Fix encoding (ISO-8859-1 to UTF-8).
+  * Add debian/watch.
+
+ -- Piotr Lewandowski <piotr.lewandowski@gmail.com>  Wed, 23 Sep 2009 13:01:50 +0200
+
+pyxdg (0.15-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * debian/control:
+    + Update Standards-Version to 3.7.2. No changes needed.
+  * New Python policy changes. Closes: #373373.
+    + debian/rules:
+      -	Add DEB_PYTHON_SYSTEM=pysupport.
+    + debian/control:
+      - Add XB-Python-Version field.
+      - Update Build-Depends.
+      - Add patchutils in Build-Depends.
+    + Add debian/pycompat and debian/pyversions.
+  * Update FSF address in debian/copyright.
+
+ -- Arnaud Fontaine <arnaud@andesi.org>  Fri, 30 Jun 2006 21:12:19 +0200
+
+pyxdg (0.15-1) unstable; urgency=low
+
+  * New upstream version (Closes: #336537).
+  * debian/control:
+    - updated the Standards-Version.
+  * debian/patches/fix-error-handling.patch:
+    - patch from the CVS.
+  * debian/patches/fix-reversed-definition.patch:
+    - define reversed function which is python2.4 specific,
+      change suggested by Sam Morris <sam@robots.org.uk> (Closes: #315091).
+  * debian/rules:
+    - use the simple-patchsys rule.
+
+ -- Sebastien Bacher <seb128@debian.org>  Wed,  9 Nov 2005 13:33:05 +0100
+
+pyxdg (0.14-2) unstable; urgency=low
+
+  * debian/control:
+    - the package is Architecture: all.
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri, 17 Jun 2005 16:18:27 +0200
+
+pyxdg (0.14-1) unstable; urgency=low
+
+  * New upstream version.
+  * debian/control:
+    - updated the Standards-Version.
+
+ -- Sebastien Bacher <seb128@debian.org>  Thu, 16 Jun 2005 12:49:31 +0200
+
+pyxdg (0.8-1) unstable; urgency=low
+
+  * New upstream release:
+    - the "hicolor" theme has to be used as the fallback.
+    - fixed bug in splitting up strings.
+    - don't read .desktop-* files, only .desktop.
+    - add . to the literal FileExtensions so that the checks work.
+
+ -- Sebastien Bacher <seb128@debian.org>  Sun, 24 Oct 2004 00:07:01 +0200
+
+pyxdg (0.7-1) unstable; urgency=low
+
+  * New upstream release (Closes: #272146):
+    - add 'import codecs' to IniFile, needed by write support.
+    - fix parsing of lists with only one entry.
+
+ -- Sebastien Bacher <seb128@debian.org>  Sat, 18 Sep 2004 01:19:33 +0200
+
+pyxdg (0.6-1) unstable; urgency=low
+
+  * New upstream release (Closes: #264720):
+    -  performance improvements.
+
+ -- Sebastien Bacher <seb128@debian.org>  Tue, 10 Aug 2004 17:59:50 +0200
+
+pyxdg (0.5-1) unstable; urgency=low
+
+  * New upstream release
+    + supports "none" locale (Closes:  #240588).
+  * debian/copyright
+    + new upstream release is under LGPL.
+
+ -- Sebastien Bacher <seb128@debian.org>  Tue, 30 Mar 2004 19:42:50 +0200
+
+pyxdg (0.4-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Sebastien Bacher <seb128@debian.org>  Sat, 13 Mar 2004 14:17:48 +0100

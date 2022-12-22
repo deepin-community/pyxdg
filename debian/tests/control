@@ -1,0 +1,2 @@
+Tests: upstream
+Depends: @, python3-nose, shared-mime-info, hicolor-icon-theme, python3-all

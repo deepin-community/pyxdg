@@ -1,0 +1,4 @@
+set-default-menu.patch
+gettext-support.patch
+test_mime_skip_symlink.patch
+add-an-xdg-5-compatibility-layer.patch

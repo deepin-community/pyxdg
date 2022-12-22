@@ -1,0 +1,8 @@
+The test-example.tar.xz archive contains the contents of test/example,
+used during build-time tests.
+
+test/example is taken from the upstream git repository at
+https://gitlab.freedesktop.org/xdg/pyxdg
+
+It is not provided in the upstream tarball at
+https://pypi.org/project/pyxdg/

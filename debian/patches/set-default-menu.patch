@@ -1,0 +1,39 @@
+From ae43d8229e65a3e45b300f04f8e4a5b939288007 Mon Sep 17 00:00:00 2001
+From: Ryan Kavanagh <rak@debian.org>
+Date: Thu, 8 Oct 2015 13:34:16 -0700
+Subject: Set default menu to be parsed
+
+ Upstream defaults to applications.menu, which isn't provided by Debian. We'll
+ try upstream's default, falling back to debian-menu.menu if it doesn't exist.
+Origin: vendor
+Bug-Debian: http://bugs.debian.org/654978
+Forwarded: no
+Last-Update: 2012-03-09
+
+Patch-Name: set-default-menu.patch
+---
+ xdg/Menu.py | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/xdg/Menu.py b/xdg/Menu.py
+index 1dd2af5..1ec9e28 100644
+--- a/xdg/Menu.py
++++ b/xdg/Menu.py
+@@ -623,8 +623,17 @@ class XMLMenuBuilder(object):
+             filename = _get_menu_file_path(filename)
+         # use default if no filename given
+         if not filename:
++            # Upstream's default, we leave it as default in case someone
++            # produces their own applications.menu and is depending on it.
+             candidate = os.environ.get('XDG_MENU_PREFIX', '') + "applications.menu"
+             filename = _get_menu_file_path(candidate)
++            # Since applications.menu isn't provided in Debian, we'll fallback
++            # to debian.menu, typically in /etc/xdg/menus/debian-menu.menu
++            # (Closes: #654978)
++            if not filename:
++                candidate = os.environ.get('XDG_MENU_PREFIX', '') + \
++                                           "debian-menu.menu"
++                filename = _get_menu_file_path(candidate)
+         if not filename:
+             raise ParsingError('File not found', "/etc/xdg/menus/%s" % candidate)
+         # check if it is a .menu file
